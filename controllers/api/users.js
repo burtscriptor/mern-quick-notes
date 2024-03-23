@@ -1,11 +1,12 @@
 
+const Note = require("../../models/note")
 const User = require("../../models/user");
 const jwt =  require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 
 
 const create = async (request, respond) => {
-    console.log('this is create');
+   
     try {
         // Add the user to the database
         const user = await User.create(request.body);
@@ -23,6 +24,21 @@ const create = async (request, respond) => {
       }
     }
 
+const find = async (request, respond) => { 
+  const id = request.user._id;
+  
+  try {
+    const note = await Note.findById(id);
+    respond.json(note);
+    if(!note) {
+      console.log('no notes');
+      respond.json(null);
+    }
+  } catch (error) {
+    respond.status(500).json({ error: 'Internal server error' });
+  }
+};
+
     
     function createJWT(user) {
         return jwt.sign(
@@ -34,14 +50,14 @@ const create = async (request, respond) => {
       }
 
       const logIn = async (request, respond) => {
-        console.log("login endpoint")
+      
     
       try {
         const user = await User.findOne({ email: request.body.email });
-            console.log('user found this is user =', user );
+         
         
         if (!user) {
-            console.log('user not found');
+            
           throw new Error('User not found');
         }
     
@@ -59,14 +75,15 @@ const create = async (request, respond) => {
     
     function checkToken(req, res) {
       // req.user will always be there for you when a token is sent
-      console.log('req.user', req.user);
+ 
       res.json(req.exp);
     }
 
 module.exports = {
     create,
     logIn,
-    checkToken
+    checkToken,
+    find,
 };
 
 

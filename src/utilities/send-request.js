@@ -1,14 +1,18 @@
 import { getToken } from './users-service';
 
+// send request will automatically send the token with every request 
+// send and fetch are ajax requests
+
 export default async function sendRequest(url, method = 'GET', payload = null) {
-    // Fetch accepts an options object as the 2nd argument
-    // used to include a data payload, set headers, etc. 
-    const options = { method };
+    
+    console.log('send req', url);
+    const options = { method: method };
     if (payload) {
       options.headers = { 'Content-Type': 'application/json' };
       options.body = JSON.stringify(payload);
     }
     const token = getToken();
+   
     if (token) {
     // Ensure the headers object exists
     options.headers = options.headers || {};

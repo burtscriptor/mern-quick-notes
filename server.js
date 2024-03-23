@@ -16,9 +16,9 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // Be sure to mount before routes
 app.use(require('./config/checkToken'));
 
-// app.use('/api/login', require('./routes/api/login'));
-app.use('/api/users', require('./routes/api/users'));
 
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/notes', require('./routes/api/notes'));
 
 
 
