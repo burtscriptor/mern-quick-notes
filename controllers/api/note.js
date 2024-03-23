@@ -32,7 +32,17 @@ const create = async (request, respond) => {
        }
     }
 
+    async function deleteNote(request, respond) {
+      try {
+          await Note.deleteOne({_id: request.params.id, user: request.user._id});
+          respond.json(true);
+      } catch (err) {
+          respond.status(400).json(err);
+      }
+  }
+
     module.exports = {
       index,  
-      create
+      create,
+      delete: deleteNote
     };

@@ -8,12 +8,8 @@ const NavBar = ({ user, setUser }) => {
         setUser(null);
     }
     return (
-        <nav>
-            <Link to="/notes">Notes</Link>
-            &nbsp; &nbsp; 
-            <Link to="/notes/new">New Note</Link>
-            &nbsp; &nbsp; 
-            <span>Welcome {user.name}</span>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <span class="navbar-brand">Welcome {user.name}</span>
             &nbsp; &nbsp; <Link to="" onClick={ handleLogOut }>Log Out</Link>
         </nav>
     );

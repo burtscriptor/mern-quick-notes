@@ -41,7 +41,7 @@ export default class LoginForm extends Component {
         <>
         <div className='form-container'>
         <form name="log-in" onSubmit={this.handleLogin}> 
-        <label>Email</label>
+        <label>Name</label>
         <input type="text" name="email" value={this.state.email} onChange={this.handleChange}></input>
         <label>Password</label>
         <input type="text" name="password" value={this.state.password} onChange={this.handleChange}></input>

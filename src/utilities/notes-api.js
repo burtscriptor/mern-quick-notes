@@ -8,7 +8,10 @@ export function createNote(createNote) {
 };
 
 export function findNotes() {
-    console.log('this is api service findNotes')
+    
     return sendRequest(`${BASE_URL}/`, 'GET')
 };
   
+export function deleteNoteAPI(id) {
+    return sendRequest(`${BASE_URL}/${id}`, 'DELETE')
+}
